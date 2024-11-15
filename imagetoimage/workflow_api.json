@@ -1,12 +1,12 @@
 {
   "3": {
     "inputs": {
-      "seed": 916248261004849,
+      "seed": 685591845453906,
       "steps": 32,
       "cfg": 7.9,
       "sampler_name": "dpmpp_sde_gpu",
       "scheduler": "normal",
-      "denoise": 0.76,
+      "denoise": 0.9,
       "model": [
         "14",
         0
@@ -31,7 +31,7 @@
   },
   "6": {
     "inputs": {
-      "text": "Abstract, Futuristic, Experimental,Contemporary art, Jazz album, Kandinsky,Mysterious",
+      "text": "Abstract | Futuristic | Experimental | Contemporary art | Jazz album |\nGuanzhong Wu | Mysterious",
       "clip": [
         "14",
         1
@@ -39,12 +39,12 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
+      "title": "Positive"
     }
   },
   "7": {
     "inputs": {
-      "text": "\nugly, deformed, line, black and white,boring,sigle hue,text,Separate",
+      "text": "\nugly | deformed | black and white| boring,sigle hue|text|simple| frame",
       "clip": [
         "14",
         1
@@ -52,7 +52,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
+      "title": "Negative"
     }
   },
   "8": {
@@ -86,7 +86,7 @@
   },
   "10": {
     "inputs": {
-      "image": "processed_image (4).jpg",
+      "image": "image_2.png",
       "upload": "image"
     },
     "class_type": "LoadImage",
