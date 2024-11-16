@@ -9,6 +9,8 @@ from music_generator import generate_music
 ctk.set_appearance_mode("light")  # 设置主题为浅色
 
 class PlantApp(ctk.CTk):
+    image_path = './img/plant1.jpg'
+
     def __init__(self):
         super().__init__()
         self.selected_artist_button = None  # 记录选中的按钮
@@ -48,6 +50,7 @@ class PlantApp(ctk.CTk):
     def import_image(self):
         file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png *.jpeg")])       
         if file_path:
+            self.image_path = file_path
             image = Image.open(file_path)  # 这里保存的是 PIL 图像对象
             image = image.resize((230, 230), Image.LANCZOS)
 
@@ -124,8 +127,7 @@ class PlantApp(ctk.CTk):
         
     def open_music_player(self):
         if self.imported_image:
-            image_path = './img/plant4.jpg'
-            generate_music(image_path, './music')
+            generate_music(self.image_path, './music')
             music_player = MusicPlayer(self, self.imported_image)
             music_player.grab_set()
         else:
