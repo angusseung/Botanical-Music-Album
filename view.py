@@ -3,6 +3,7 @@ from tkinter import filedialog
 from PIL import Image, ImageTk, ImageDraw
 import customtkinter as ctk
 import os
+from music_generator import generate_music
 
 # 初始化 CustomTkinter
 ctk.set_appearance_mode("light")  # 设置主题为浅色
@@ -45,7 +46,7 @@ class PlantApp(ctk.CTk):
         generate_button.grid(row=6, column=0, pady=(20, 10), padx=20)
 
     def import_image(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png *.jpeg")])
+        file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png *.jpeg")])       
         if file_path:
             image = Image.open(file_path)  # 这里保存的是 PIL 图像对象
             image = image.resize((230, 230), Image.LANCZOS)
@@ -123,6 +124,8 @@ class PlantApp(ctk.CTk):
         
     def open_music_player(self):
         if self.imported_image:
+            image_path = './img/plant4.jpg'
+            generate_music(image_path, './music')
             music_player = MusicPlayer(self, self.imported_image)
             music_player.grab_set()
         else:
