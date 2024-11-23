@@ -7,11 +7,12 @@ from PIL import Image
 import base64
 from datetime import datetime
 import asyncio
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 from pathlib import Path
 from comfy_api import generate
 
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
+
 
 
 # UI configurations
