@@ -18,7 +18,7 @@ image_path = './img/plant1.jpg'
 output_dir = './audio'
 
 # UI configurations
-st.set_page_config(page_title="Botanical Music Generator", page_icon=":minidisc:", layout="wide")
+st.set_page_config(page_title="Music Album Generator", page_icon=":minidisc:", layout="wide")
 
 # Function to display the first page
 def display_page1():
@@ -29,8 +29,8 @@ def display_page1():
     """
     # Render the cover page content
     st.markdown(cover_content, unsafe_allow_html=True)
-    st.markdown("# Botanical Music Generator")
-    st.markdown("Let's find out some art things in nature!")
+    st.markdown("# Music Album Generator")
+    #st.markdown("Let's find out some art things in nature!")
 
     st.write("\n\n")
     st.subheader("Step 1 - Choose an Art Style")
@@ -61,9 +61,9 @@ def display_page1():
         st.write("No image selected.")
 
     st.write("\n\n")
-    st.subheader("Step 2 - Import a Plant Picture")
+    st.subheader("Step 2 - Import a Picture")
     tempfile = "tempimage.jpg"
-    if uploaded_file := st.file_uploader("Choose a picture of a plant you took in real life...", type=['jpg', 'jpeg', 'png']):
+    if uploaded_file := st.file_uploader("Choose a picture you took in real life...", type=['jpg', 'jpeg', 'png']):
         with open(tempfile, "wb") as temp_file:
             temp_file.write(uploaded_file.getvalue())
     
@@ -200,7 +200,7 @@ def display_page2():
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("# Botanical Music Album")
+        st.markdown("# Music Player")
         st.subheader("Now Playing")
 
     with col2:
@@ -247,7 +247,7 @@ def display_page2():
 def main():
     # Create a sidebar
     global page1, page2
-    page1 = st.Page(display_page1, title="Plant Importer")
+    page1 = st.Page(display_page1, title="Music Maker")
     page2 = st.Page(display_page2, title="Music Player")
     pg = st.navigation([page1, page2])
     pg.run()
