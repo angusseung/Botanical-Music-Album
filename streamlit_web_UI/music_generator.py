@@ -45,7 +45,7 @@ def generate_music(image_path, output_dir, num_inference_steps=200, audio_length
 
     # Save the generated audio to WAV files
     for i, audio in enumerate(audios):
-        wav_file_path = f"{output_dir}/myMusic.wav"
+        wav_file_path = f"{output_dir}/music.wav"
         write(wav_file_path, 16000, audio.astype(np.float32))  # Assuming a sample rate of 16000 Hz
 
     print(f"Audio files saved successfully in {output_dir}.")

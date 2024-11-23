@@ -11,9 +11,11 @@ loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 from pathlib import Path
 from comfy_api import generate
+from music_generator import generate_music
 
 
-
+image_path = './img/plant1.jpg'
+output_dir = './audio'
 
 # UI configurations
 st.set_page_config(page_title="Botanical Music Generator", page_icon=":minidisc:", layout="wide")
@@ -54,6 +56,7 @@ def display_page1():
         selected_index = image_paths.index(selected_path)
         st.session_state['selected_caption_index'] = selected_index
         st.session_state['selected_caption'] = captions[selected_index]
+        image_path = selected_path
     else:
         st.write("No image selected.")
 
@@ -80,6 +83,8 @@ def display_page1():
                 st.session_state.user_mark_input = user_mark_input  # Store user input in session_state after validation
 
                 generate(tempfile,user_mark_input)
+                generate_music(image_path, output_dir)
+
                 st.switch_page(page2)
 
             else:
@@ -199,7 +204,7 @@ def display_page2():
         st.subheader("Now Playing")
 
     with col2:
-        audio_file = "audio/music.mp3"
+        audio_file = "audio/music.wav"
         st.write("\n\n")
         st.write("\n\n")
         st.write("\n\n")
