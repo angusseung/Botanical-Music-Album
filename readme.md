@@ -11,7 +11,8 @@ This project offers an interactive platform for creating AI-generated art and mu
 
 ## Demo Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Gc3t12E6uVg" frameborder="0" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=[YOUTUBE_VIDEO_ID](https://youtu.be/Gc3t12E6uVg))
+
 
 ## Overview
 
