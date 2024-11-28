@@ -1,4 +1,4 @@
-# AI-Generated Art and Music Platform
+## AI-Generated Art and Music Platform
 
 This project offers an interactive platform for creating AI-generated art and music, blending creativity with advanced technology. Users can select art styles from various historical periods and artists, upload personal plant images, and generate unique visual and auditory content. The platform allows for a highly personalized creative experience, making it easy to explore new possibilities in art and sound.
 
