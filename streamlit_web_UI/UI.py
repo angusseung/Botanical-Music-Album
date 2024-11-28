@@ -12,6 +12,7 @@ from pathlib import Path
 from comfy_api import generate
 from music_generator import generate_music
 import time
+
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 
