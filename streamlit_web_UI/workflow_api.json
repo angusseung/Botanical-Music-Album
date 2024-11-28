@@ -6,7 +6,7 @@
       "cfg": 7.9,
       "sampler_name": "dpmpp_sde_gpu",
       "scheduler": "normal",
-      "denoise": 0.9,
+      "denoise": 0.8,
       "model": [
         "14",
         0
@@ -112,7 +112,7 @@
   },
   "14": {
     "inputs": {
-      "ckpt_name": "v1-5-pruned-emaonly.ckpt"
+      "ckpt_name": "SD1.5\\v1-5-pruned-emaonly.ckpt"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {

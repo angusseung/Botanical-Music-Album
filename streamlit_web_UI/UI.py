@@ -7,11 +7,14 @@ from PIL import Image
 import base64
 from datetime import datetime
 import asyncio
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
+
 from pathlib import Path
 from comfy_api import generate
 from music_generator import generate_music
+import time
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+
 
 
 image_path = './img/plant1.jpg'
@@ -19,6 +22,9 @@ output_dir = './audio'
 
 # UI configurations
 st.set_page_config(page_title="Music Album Generator", page_icon=":minidisc:", layout="wide")
+
+
+
 
 # Function to display the first page
 def display_page1():
@@ -36,13 +42,21 @@ def display_page1():
     st.subheader("Step 1 - Choose an Art Style")
     image_paths = [
         "pic/Pablo Picasso.jpg",
-        "pic/Keith Haring.jpg",
-        "pic/Wassily Kandinsky.jpg"
+        "pic/John Singer Sargent.jpg",
+        "pic/Wassily Kandinsky.jpg",
+        "pic/Kazimir Malevich.png",
+        "pic/Zao Wou-Ki.png",
+        "pic/Hiroshi Yoshida.png"
     ]
     captions = [
         "Pablo Picasso",
-        "Keith Haring",
-        "Wassily Kandinsky"
+        "John Singer Sargent",
+        "Wassily Kandinsky",
+        "Kazimir Malevich",
+        "Zao Wou-Ki",
+        "Hiroshi Yoshida"
+
+
     ]
     selected_path = image_select(
         label="Select an art style:",
@@ -75,16 +89,21 @@ def display_page1():
 
         st.write("\n\n")
         st.write("\n\n")
-        if st.button("Submit", type="primary"):
+        if st.button("Submit", type="primary", key="submit_button_page1"):
             if not user_mark_input.strip():
                 st.warning("Please enter your participants in the album production. This field cannot be empty.")
             elif st.session_state.get('selected_caption') and uploaded_file:
                 st.success("Submission successful! You selected: " + st.session_state['selected_caption'] + ".")
                 st.session_state.user_mark_input = user_mark_input  # Store user input in session_state after validation
+                caption = st.session_state.user_mark_input
+                generate_caption = generate_music(image_path, output_dir)
+                generate(tempfile, generate_caption,caption)
 
-                generate(tempfile,user_mark_input)
-                generate_music(image_path, output_dir)
-
+                progress_bar = st.progress(0)
+                for i in range(1,101):
+                    progress_bar.progress(i)
+                    time.sleep(0.05)
+                
                 st.switch_page(page2)
 
             else:
@@ -190,11 +209,7 @@ def display_page2():
 
     else:
         print()
-
-
-    # Display the final image as background
     
-
 
     st.write("\n\n")
 
@@ -224,30 +239,33 @@ def display_page2():
     st.write("\n\n")
     st.write("\n\n")
     st.write("\n\n")
+
     st.markdown("# Album Gallery")
     st.subheader("See the visual and musical artworks that others have created with different artists.")
+
     all_files = list(Path('output').iterdir())
     images = [image for image in all_files if not image.name.endswith("txt")]
     captions = [open(f'output/{image.name}.txt').read() for image in images]
+
     if images:
         history_songs = image_select(
-            label="Select a Songs",
+            label=" ",
             images=images,
             captions=captions
         )
 
+
     st.write("\n\n")
-    st.button("Listen", type="primary")
-    
-
-
+    if st.button("Play Again!", type="primary", key="play_again_button"):
+        st.switch_page(page1)
 
     
+
 
 def main():
     # Create a sidebar
     global page1, page2
-    page1 = st.Page(display_page1, title="Music Maker")
+    page1 = st.Page(display_page1, title="Plant Import")
     page2 = st.Page(display_page2, title="Music Player")
     pg = st.navigation([page1, page2])
     pg.run()
@@ -262,4 +280,5 @@ def main():
     # elif page == "Music Player":
     #    display_page2()
 
-main()
+if __name__ == "__main__":
+    main()
